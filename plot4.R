@@ -14,17 +14,14 @@ pwr_sub_data <- pwr_data[which(pwr_data$Date >= '2007/02/01' & pwr_data$Date <= 
 png(filename = "plot4.png", width = 480, height = 480, units = "px")
 par(mfrow=c(2, 2))
 #Adding Plot1
-with(pwr_sub_data, hist(Global_active_power, col="red",  main="Global Active Power", xlab="Global Active Power (kilowatts)"))
+with(pwr_sub_data, plot(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Global_active_power, xlab="", ylab="Global Active Power", type="l"))
 #Adding Plot2
-with(pwr_sub_data, plot(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Global_active_power, xlab="", ylab="Global Active Power (kilowatts)", type="l"))
+with(pwr_sub_data, plot(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Voltage, xlab="datetime", ylab="Voltage", type="l"))
 #Adding Plot3
 with(pwr_sub_data, plot(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Sub_metering_1, xlab="", ylab="Enerty sub metering", type="l", col="black"))
 with(pwr_sub_data, points(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Sub_metering_2, type="l", col="red"))
 with(pwr_sub_data, points(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Sub_metering_3, type="l", col="blue"))
 legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col=c("black", "red", "blue"), lwd=1)
 #Ading Plot4
-with(pwr_sub_data, plot(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Sub_metering_1, xlab="", ylab="Enerty sub metering", type="l", col="black"))
-with(pwr_sub_data, points(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Sub_metering_2, type="l", col="red"))
-with(pwr_sub_data, points(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Sub_metering_3, type="l", col="blue"))
-legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col=c("black", "red", "blue"), lwd=1)
+with(pwr_sub_data, plot(strptime(paste(Date,Time),"%Y-%m-%d %H:%M:%S"), Global_reactive_power, xlab="datetime", ylab="Global_reactive_power", type="l", col="black"))
 dev.off()
